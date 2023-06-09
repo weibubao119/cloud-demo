@@ -1,0 +1,29 @@
+server:
+  port: 8081
+spring:
+  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
+#        cluster-name: SH #集群名称
+#        namespace: d10cceb4-4253-4d81-a144-9c4b8f9343c4
+#  application:
+#    name: userservice  #应用名，注册eureka的使用
+  datasource:
+    url: jdbc:mysql://172.20.211.110:3306/cloud_user?useSSL=false  #mysql的地址是虚拟机的
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:10086/eureka # 注册中心地址

@@ -1,0 +1,42 @@
+server:
+  port: 8088
+spring:
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      web-context-unify: false # 关闭context整合 链路模式中是对不同来源的两个链路做监控，但是sentinel默认会给进入springmvc的所有亲贵设置同一个root资源，会导致链路模式失效
+    nacos:
+      discovery:
+        server-addr: localhost:80
+#        namespace: d10cceb4-4253-4d81-a144-9c4b8f9343c4
+  application:
+    name: orderservice
+  datasource:
+    url: jdbc:mysql://172.20.211.110:3306/cloud_order?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  type-aliases-package: cn.itcast.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    cn.itcast: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:10086/eureka # 注册中心地址
+userservice:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则
+ribbon:
+  eager-load:
+    enabled: true
+    clients: orderservice,userservice
+feign:
+  sentinel:
+    enabled: true # 开启feign对sentinel的支持

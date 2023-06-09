@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: userservice
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:80 #使用nginx反向代理 nacos的注册中心
+#        cluster-name: SH #集群名称
+#        namespace: d10cceb4-4253-4d81-a144-9c4b8f9343c4
+      config:
+        file-extension: yaml #配置文件的后缀名
+        server-addr: localhost:80  #nacos的配置中心
